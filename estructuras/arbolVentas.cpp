@@ -207,3 +207,22 @@ void ArbolVentas::leerEnArchivoBinario(){
     archivo.close();
 }
 
+int ArbolVentas::getFinalID(Ventas nodo){
+    int id=nodo.getID();
+
+    if(!nodo.hoja){
+        for(int i=0;i<=nodo.numeroClaves;i++){
+            if(nodo.hijos[i]!=nullptr){
+                cout<<endl;
+                print(*nodo.hijos[i]);
+            }
+        }
+    }
+
+    return id;
+}
+
+int ArbolVentas::getID(){
+    return getFinalID(*root);
+}
+

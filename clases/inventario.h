@@ -24,6 +24,7 @@ public:
     Inventario(int num);
     void imprimir();
     datosInventario* buscar(int id);
+    int getID();
 };
 
 #endif

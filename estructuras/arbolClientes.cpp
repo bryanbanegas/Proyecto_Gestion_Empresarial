@@ -196,7 +196,7 @@ Clientes* ArbolClientes::read(ifstream &archivo){
             archivo.read(reinterpret_cast<char*>(&compraSize),sizeof(compraSize));
             compra.resize(compraSize);
             archivo.read(&compra[0],compraSize);
-            dato.historialCompras.push_back(compra);
+            nodo->claves[i].historialCompras.push_back(compra);
         }
     }
 
@@ -220,4 +220,23 @@ void ArbolClientes::leerEnArchivoBinario(){
     archivo.read(reinterpret_cast<char*>(&num),sizeof(num));
     root=read(archivo);
     archivo.close();
+}
+
+int ArbolClientes::getFinalID(Clientes nodo){
+    int id=nodo.getID();
+
+    if(!nodo.hoja){
+        for(int i=0;i<=nodo.numeroClaves;i++){
+            if(nodo.hijos[i]!=nullptr){
+                cout<<endl;
+                print(*nodo.hijos[i]);
+            }
+        }
+    }
+
+    return id;
+}
+
+int ArbolClientes::getID(){
+    return getFinalID(*root);
 }

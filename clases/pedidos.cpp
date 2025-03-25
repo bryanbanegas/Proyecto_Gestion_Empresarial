@@ -63,4 +63,13 @@ bool Pedidos::eliminar(int id){
     return true;
 }
 
+int Pedidos::getID(){
+    int id=0;
+    for(int i=0;i<numeroClaves;i++){
+        if(claves[i].id>id){
+            id=claves[i].id;
+        }
+    }
+    return id;
+}
 

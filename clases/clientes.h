@@ -25,6 +25,7 @@ public:
     Clientes(int num);
     void imprimir();
     datosClientes* buscar(int id);
+    int getID();
 };
 
 #endif

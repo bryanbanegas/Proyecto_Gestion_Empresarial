@@ -101,9 +101,6 @@ int main(){
             getline(cin,opcionEmpleados);
             cout << "---------------------------------" << endl;
             if(opcionEmpleados == "1"){
-                idEmpleados=leerArchivoID(0);
-                idEmpleados++;
-                guardarIDs(idEmpleados,idClientes,idPedidos,idVentas,idInventario);
                 thread t1(agregarEmpleados);
                 t1.join();
             } else if(opcionEmpleados == "2"){
@@ -143,9 +140,6 @@ int main(){
             getline(cin,opcionClientes);
             cout << "---------------------------------" << endl;
             if(opcionClientes == "1"){
-                idClientes=leerArchivoID(1);
-                idClientes++;
-                guardarIDs(idEmpleados,idClientes,idPedidos,idVentas,idInventario);
                 thread t2(agregarCliente);
                 t2.join();
             } else if (opcionClientes == "2" && cantidadInventario>0){

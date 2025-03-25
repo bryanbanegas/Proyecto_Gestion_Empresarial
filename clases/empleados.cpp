@@ -43,3 +43,13 @@ bool Empleados::cambiar(int id){
     }
     return false;
 }
+
+int Empleados::getID(){
+    int id=0;
+    for(int i=0;i<numeroClaves;i++){
+        if(claves[i].id>id){
+            id=claves[i].id;
+        }
+    }
+    return id;
+}

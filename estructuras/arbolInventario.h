@@ -17,7 +17,9 @@ public:
     void imprimir();
     void guardarEnArchivoBinario();
     void leerEnArchivoBinario();
+    int getID();
 private:
+    int getFinalID(Inventario nodoArbol);
     datosInventario* search(int clave,Inventario nodoArbol);
     void split(Inventario *nodo1,int i, Inventario *nodo2);
     void nonfullInsert(Inventario *nodo,int clave);

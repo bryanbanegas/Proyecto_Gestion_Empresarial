@@ -224,3 +224,21 @@ void ArbolEmpleados::leerEnArchivoBinario(){
     archivo.close();
 }
 
+int ArbolEmpleados::getFinalID(Empleados nodo){
+    int id=nodo.getID();
+
+    if(!nodo.hoja){
+        for(int i=0;i<=nodo.numeroClaves;i++){
+            if(nodo.hijos[i]!=nullptr){
+                cout<<endl;
+                print(*nodo.hijos[i]);
+            }
+        }
+    }
+
+    return id;
+}
+
+int ArbolEmpleados::getID(){
+    return getFinalID(*root);
+}

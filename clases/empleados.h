@@ -25,6 +25,7 @@ public:
     void imprimir();
     datosEmpleados buscar(int id);
     bool cambiar(int id);
+    int getID();
 };
 
 #endif

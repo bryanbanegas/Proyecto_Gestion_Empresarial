@@ -195,3 +195,22 @@ void ArbolInventario::leerEnArchivoBinario(){
     root=read(archivo);
     archivo.close();
 }
+
+int ArbolInventario::getFinalID(Inventario nodo){
+    int id=nodo.getID();
+
+    if(!nodo.hoja){
+        for(int i=0;i<=nodo.numeroClaves;i++){
+            if(nodo.hijos[i]!=nullptr){
+                cout<<endl;
+                print(*nodo.hijos[i]);
+            }
+        }
+    }
+
+    return id;
+}
+
+int ArbolInventario::getID(){
+    return getFinalID(*root);
+}

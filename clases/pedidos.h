@@ -27,6 +27,7 @@ public:
     datosPedidos* buscar(int id);
     bool confirmar(int id);
     bool eliminar(int id);
+    int getID();
 };
 
 #endif

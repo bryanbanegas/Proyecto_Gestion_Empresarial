@@ -67,6 +67,7 @@ void agregarEmpleados(){
     }
     cout<<endl;
     arbolEmpleados->leerEnArchivoBinario();
+    idEmpleados=arbolEmpleados->getID()+1;
     arbolEmpleados->insertar(idEmpleados,nombre,departamento,puesto,stod(salario),true);
     arbolEmpleados->guardarEnArchivoBinario();
     cout << "---------------------------------" << endl;
@@ -86,7 +87,6 @@ void agregarCliente(){
         cout << "Ingresar telefono del cliente: ";
         getline(cin,telefono);
     }while(!esint(telefono)||telefono.length()!=8);
-    cout << "Ingresar saldo del cliente: ";
     do{
         cout << "Ingresar saldo del cliente: ";
         getline(cin,saldo);
@@ -104,11 +104,14 @@ void agregarCliente(){
         this_thread::sleep_for(chrono::seconds(1));
     }
     cout<<endl;
+
     arbolClientes->leerEnArchivoBinario();
+    idClientes=arbolClientes->getID()+1;
     arbolClientes->insertar(idClientes,nombre,correo,telefono,stod(saldo));
     arbolClientes->guardarEnArchivoBinario();
     cout << "---------------------------------" << endl;
     cout << "¡Cliente agregado con éxito!" << endl;
+    cout << "ID de producto: " << idClientes << endl;
     cout << "---------------------------------" << endl;
 }
 
@@ -150,11 +153,8 @@ void agregarProducto(){
         this_thread::sleep_for(chrono::seconds(1));
     }
     cout<<endl;
-    cantidadInventario++;
-    idInventario=leerArchivoID(4);
-    idInventario++;
-    guardarIDs(idEmpleados,idClientes,idPedidos,idVentas,idInventario);
     arbolInvetario->leerEnArchivoBinario();
+    idInventario=arbolInvetario->getID()+1;
     arbolInvetario->insertar(idInventario,nombre,categoria,stoi(cantidad),stod(precio),true);
     arbolInvetario->guardarEnArchivoBinario();
     cout << "---------------------------------" << endl;
@@ -189,10 +189,8 @@ void agregarPedido(string cliente,int idCliente,double saldo){
             if(datos2==nullptr){
                 cout<<"Este producto no existe."<<endl;
             }else{
-                if(stoi(cantidad)<=datos2->cantidad&&stoi(cantidad)>1){
+                if(stoi(cantidad)<=datos2->cantidad&&stoi(cantidad)>=1){
                     total+=stoi(cantidad)*datos2->precio;
-                    cout<<total<<endl;
-                    cout<<saldo<<endl;
                     if(saldo>=total){
                         pedido=true;
                         cantidadProductos+=stoi(cantidad);
@@ -217,10 +215,9 @@ void agregarPedido(string cliente,int idCliente,double saldo){
         cout<<endl;
     }
     if(pedido){
-        idPedidos=leerArchivoID(2);
-        idPedidos++;
-        guardarIDs(idEmpleados,idClientes,idPedidos,idVentas,idInventario);
+        arbolInvetario->guardarEnArchivoBinario();
         arbolPedidos->leerEnArchivoBinario();
+        idPedidos=arbolPedidos->getID()+1;
         arbolPedidos->insertar(idPedidos,cliente,fecha,false);
         arbolPedidos->buscar(idPedidos)->productosSolicitados=datos1.productosSolicitados;
         arbolPedidos->guardarEnArchivoBinario();
@@ -242,14 +239,13 @@ void agregarPedido(string cliente,int idCliente,double saldo){
         cout << "Total de pedido: " << total << endl;
         cout << "ID de pedido: " << idPedidos << endl;
         cout << "---------------------------------" << endl;
-        idVentas=leerArchivoID(3);
-        idVentas++;
-        guardarIDs(idEmpleados,idClientes,idPedidos,idVentas,idInventario);
         arbolVentas->leerEnArchivoBinario();
+        idVentas=arbolVentas->getID()+1;
         arbolVentas->insertar(idVentas,idCliente,fecha,cantidadProductos,total);
         arbolVentas->buscar(idVentas)->productosVendidos=datos1.productosSolicitados;
         arbolVentas->guardarEnArchivoBinario();
         arbolClientes->buscar(idCliente)->saldo=saldo;
+        arbolClientes->guardarEnArchivoBinario();
     }else{
         cout << "---------------------------------" << endl;
         cout << "No realizo ningun pedido." << endl;

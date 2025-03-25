@@ -18,7 +18,9 @@ public:
     void imprimir();
     void guardarEnArchivoBinario();
     void leerEnArchivoBinario();
+    int getID();
 private:
+    int getFinalID(Pedidos nodoArbol);
     bool confirmarPedido(int clave,Pedidos nodo);
     datosPedidos* search(int clave,Pedidos nodo);
     void split(Pedidos *nodo1,int i, Pedidos *nodo2);

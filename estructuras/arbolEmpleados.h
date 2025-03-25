@@ -19,7 +19,9 @@ public:
     void imprimir();
     void guardarEnArchivoBinario();
     void leerEnArchivoBinario();
+    int getID();
 private:
+    int getFinalID(Empleados nodoArbol);
     void split(Empleados *nodo1,int i, Empleados *nodo2);
     void nonfullInsert(Empleados *nodo,int clave);
     void print(Empleados nodoArbol);

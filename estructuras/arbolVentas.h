@@ -17,7 +17,9 @@ public:
     void imprimir();
     void guardarEnArchivoBinario();
     void leerEnArchivoBinario();
+    int getID();
 private:
+    int getFinalID(Ventas nodoArbol);
     datosVentas* search(int clave,Ventas nodo);
     void split(Ventas *nodo1,int i, Ventas *nodo2);
     void nonfullInsert(Ventas *nodo,int clave);

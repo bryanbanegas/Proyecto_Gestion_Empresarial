@@ -39,13 +39,19 @@ void Ventas::imprimir(){
 
 datosVentas* Ventas::buscar(int id){
     for(int i=0;i<numeroClaves;i++){
-        if(claves[i].idCliente==id){
+        if(claves[i].idVenta==id){
             return &claves[i];
         }
     }
     return nullptr;
 }
 
-bool Ventas::eliminar(int id){
-    return true;
+int Ventas::getID(){
+    int id=0;
+    for(int i=0;i<numeroClaves;i++){
+        if(claves[i].idVenta>id){
+            id=claves[i].idVenta;
+        }
+    }
+    return id;
 }
